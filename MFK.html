@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Image Selector</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        #imageContainer {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        #imageContainer img {
+            margin: 10px;
+            width: 200px;
+            height: 400px;
+            object-fit: cover;
+            border: 2px solid #ccc;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Random Image Selector</h1>
+    <div id="imageContainer">
+        <!-- Random images will be displayed here -->
+    </div>
+    <button onclick="showRandomImages()">Play</button>
+
+    <script>
+        const images = [
+            'file:///Users/elenisakasgandullo/Documents/Projekte/Stream/Shizu/Games/Bilder+Namen/4Tune.png',
+            'file:///Users/elenisakasgandullo/Documents/Projekte/Stream/Shizu/Games/Bilder+Namen/A_Ron.png',
+            'file:///Users/elenisakasgandullo/Documents/Projekte/Stream/Shizu/Games/Bilder+Namen/Akanoo.png',
+            'file:///Users/elenisakasgandullo/Documents/Projekte/Stream/Shizu/Games/Bilder+Namen/Aytee.png',
+            'file:///Users/elenisakasgandullo/Documents/Projekte/Stream/Shizu/Games/Bilder+Namen/Bayze.png',
+            'file:///Users/elenisakasgandullo/Documents/Projekte/Stream/Shizu/Games/Bilder+Namen/BDad.png',
+            'file:///Users/elenisakasgandullo/Documents/Projekte/Stream/Shizu/Games/Bilder+Namen/Bong_Teggy.png'
+        ];
+
+        function showRandomImages() {
+            // Select 3 random images
+            let randomImages = [];
+            while (randomImages.length < 3) {
+                let randomIndex = Math.floor(Math.random() * images.length);
+                let selectedImage = images[randomIndex];
+                if (!randomImages.includes(selectedImage)) {
+                    randomImages.push(selectedImage);
+                }
+            }
+
+            // Display the images
+            const imageContainer = document.getElementById('imageContainer');
+            imageContainer.innerHTML = ''; // Clear previous images
+            randomImages.forEach(imageSrc => {
+                const img = document.createElement('img');
+                img.src = imageSrc;
+                imageContainer.appendChild(img);
+            });
+        }
+
+        // Display random images when the page loads
+        window.onload = showRandomImages;
+    </script>
+
+</body>
+</html>
